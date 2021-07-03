@@ -12,7 +12,7 @@ var grassArr = []
 var grassEaterArr = []
 var grassPredatorArr = []
 var bust = []
-var antibust=[]
+var antibust = []
 var side = 15;
 for (var y = 0; y < 50; y++) {
     matrix[y] = []
@@ -39,7 +39,7 @@ function setup() {
             } else if (matrix[y][x] == 4) {
                 var gr = new Bust(x, y)
                 bust.push(gr)
-            }else if (matrix[y][x] == 4) {
+            } else if (matrix[y][x] == 4) {
                 var gr = new Bust(x, y)
                 antibust.push(gr)
             }

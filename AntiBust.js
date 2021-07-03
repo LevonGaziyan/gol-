@@ -1,8 +1,5 @@
-class AntiBust {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
+class AntiBust extends LivingCreature {
+
 
     getNewCoordinates() {
         this.directions = [

@@ -1,8 +1,5 @@
-class Bust {   
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-    }
+class Bust extends LivingCreature {
+
 
     getNewCoordinates() {
         this.directions = [
