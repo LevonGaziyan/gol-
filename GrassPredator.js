@@ -27,7 +27,7 @@ class GrassPredator extends LivingCreature {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
         var newCell = random(emptyCells);
-        if (newCell && this.multiply >= 15) {
+        if (newCell && this.energy >= 10) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 3;
@@ -64,14 +64,16 @@ class GrassPredator extends LivingCreature {
         var newCell1 = emptyCells1[Math.floor(Math.random() * emptyCells1.length)]
         var emptyCells2 = this.chooseCell(5)
         var newCell2 = emptyCells2[Math.floor(Math.random() * emptyCells2.length)]
+        var emptyCells3 = this.chooseCell(6)
+        var newCell3 = emptyCells3[Math.floor(Math.random() * emptyCells2.length)]
         if (newCell) {
             this.energy++
             var newX = newCell[0]
             var newY = newCell[1]
 
             matrix[newY][newX] = matrix[this.y][this.x]
-            matrix[this.y][this.x] = 0
-            this.x = newX
+            matrix[this.y][this.x] =
+                this.x = newX
             this.y = newY
             for (var i in grassEaterArr) {
                 if (newX == grassEaterArr[i].x && newY == grassEaterArr[i].y) {
@@ -109,6 +111,8 @@ class GrassPredator extends LivingCreature {
                     break
                 }
             }
+        } else if (newCell3) {
+            this.die()
         }
         else {
             this.move()

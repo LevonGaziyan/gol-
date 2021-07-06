@@ -1,11 +1,4 @@
 var matrix = [
-    // [0, 0, 1, 2, 0],
-    // [1, 0, 0, 0, 0],
-    // [0, 1, 0, 0, 0],
-    // [0, 0, 1, 2, 0],
-    // [1, 1, 0, 0, 0],
-    // [1, 1, 0, 0, 0],
-    // [1, 1, 0, 0, 0]
 ];
 
 var grassArr = []
@@ -13,11 +6,13 @@ var grassEaterArr = []
 var grassPredatorArr = []
 var bust = []
 var antibust = []
+var bomb = []
+var rock = []
 var side = 15;
 for (var y = 0; y < 50; y++) {
     matrix[y] = []
     for (var x = 0; x < 50; x++) {
-        matrix[y].push(Math.floor(Math.random() * 6))
+        matrix[y].push(Math.floor(Math.random() * 8))
     }
 }
 
@@ -39,9 +34,15 @@ function setup() {
             } else if (matrix[y][x] == 4) {
                 var gr = new Bust(x, y)
                 bust.push(gr)
-            } else if (matrix[y][x] == 4) {
-                var gr = new Bust(x, y)
+            } else if (matrix[y][x] == 5) {
+                var gr = new AntiBust(x, y)
                 antibust.push(gr)
+            } else if (matrix[y][x] == 6) {
+                var gr = new Bomb(x, y)
+                bomb.push(gr)
+            } else if (matrix[y][x] == 7) {
+                var gr = new Rock(x, y)
+                rock.push(gr)
             }
         }
     }
@@ -71,6 +72,12 @@ function draw() {
             }
             else if (matrix[y][x] == 5) {
                 fill("red");
+            }
+            else if (matrix[y][x] == 6) {
+                fill("blue");
+            }
+            else if (matrix[y][x] == 7) {
+                fill("orange");
             }
             rect(x * side, y * side, side, side);
         }

@@ -2,7 +2,7 @@ class GrassEater extends LivingCreature {
     constructor(x, y) {
         super(x, y)
         this.multiply = 0
-
+        this.energy = 8
     }
 
     getNewCoordinates() {
@@ -19,6 +19,7 @@ class GrassEater extends LivingCreature {
     }
 
     chooseCell(character) {
+        this.getNewCoordinates()
         return super.chooseCell(character);
     }
 
@@ -26,7 +27,7 @@ class GrassEater extends LivingCreature {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
         var newCell = random(emptyCells);
-        if (newCell && this.multiply >= 15) {
+        if (newCell && this.multiply>=5 && this.energy > 15) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = 2;
@@ -34,6 +35,7 @@ class GrassEater extends LivingCreature {
             var newGrass = new GrassEater(newX, newY);
             grassEaterArr.push(newGrass);
             this.multiply = 0;
+            this.energy = 8
         }
     }
 
