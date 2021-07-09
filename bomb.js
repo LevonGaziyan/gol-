@@ -1,4 +1,5 @@
-class Bomb extends LivingCreature {
+var LivingCreature=require("./LivingCreature")
+module.exports = class Bomb extends LivingCreature {
     getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],

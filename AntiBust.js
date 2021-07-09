@@ -1,4 +1,5 @@
-class AntiBust extends LivingCreature {
+var LivingCreature=require("./LivingCreature")
+module.exports = class AntiBust extends LivingCreature {
 
 
     getNewCoordinates() {

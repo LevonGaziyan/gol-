@@ -1,4 +1,5 @@
-class Rock extends LivingCreature {
+var LivingCreature=require("./LivingCreature")
+module.exports = class Rock extends LivingCreature {
     getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
