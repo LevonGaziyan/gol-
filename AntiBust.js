@@ -1,4 +1,4 @@
-var LivingCreature=require("./LivingCreature")
+var LivingCreature=require("./class.js")
 module.exports = class AntiBust extends LivingCreature {
 
 
