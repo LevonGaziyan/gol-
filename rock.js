@@ -1,4 +1,4 @@
-var LivingCreature=require("./class.js")
+var LivingCreature = require("./class.js")
 module.exports = class Rock extends LivingCreature {
     getNewCoordinates() {
         this.directions = [

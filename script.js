@@ -41,3 +41,11 @@ setInterval(
         socket.on("send matrix", nkarel
         )
     }, 1000)
+setInterval(
+    function () {
+        socket.on("send grass.length", tpel
+        )
+    }, 1000)
+function tpel(grassArr) {
+    console.log(grassArr.length)
+}

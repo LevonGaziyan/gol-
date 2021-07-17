@@ -1,14 +1,13 @@
 var express = require('express');
-
 var app = express();
 var server = require('http').createServer(app);
 var io = require("socket.io")(server)
+var fs = require("fs")
 app.use(express.static("."));
 app.get('/', function (req, res) {
     res.redirect('html.html');
 });
 server.listen(3000);
-
 var Grass = require("./grass.js")
 var GrassEater = require("./GrassEater.js")
 var GrassPredator = require("./GrassPredator.js")
@@ -16,14 +15,14 @@ var AntiBust = require("./AntiBust.js")
 var Bust = require("./Bust.js")
 var Rock = require("./rock.js")
 var Bomb = require("./Bomb.js")
-var matrix = [];
-var grassArr = []
-var grassEaterArr = []
-var grassPredatorArr = []
-var bust = []
-var antibust = []
-var bomb = []
-var rock = []
+matrix = [];
+grassArr = []
+grassEaterArr = []
+grassPredatorArr = []
+bust = []
+antibust = []
+bomb = []
+rock = []
 for (var y = 0; y < 50; y++) {
     matrix[y] = []
     for (var x = 0; x < 50; x++) {
@@ -59,6 +58,7 @@ function createObject(matrix) {
         }
     }
     io.sockets.emit("send matrix", matrix)
+    io.sockets.emit("send grass.length", grassArr)
 
 }
 function game() {
@@ -74,7 +74,9 @@ function game() {
         grassPredatorArr[i].eat();
     }
     io.sockets.emit("send matrix", matrix)
+    io.sockets.emit("send grass.length", grassArr)
 }
+
 setInterval(game, 1000)
 io.on('connection', function (socket) {
     createObject(matrix)
