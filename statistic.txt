@@ -1,0 +1,7 @@
+Grass- 107
+GrassEater- 8
+GrassPredator- 0
+Rock- 615
+Bomb- 616
+Bust- 398
+AntiBust- 384

@@ -1,5 +1,6 @@
 var socket = io()
 var side = 15;
+var multiplay = 1
 function setup() {
     frameRate(5);
     createCanvas(50 * side, 50 * side);
@@ -15,7 +16,17 @@ function nkarel(matrix) {
                 fill("#acacac");
             }
             else if (matrix[y][x] == 2) {
-                fill("black");
+                if (multiplay >= 1 && multiplay < 300) {
+                    fill("black");
+                    multiplay++
+                    console.log(multiplay)
+                } else if (multiplay >= 300 && multiplay < 600) {
+                    fill("white")
+                    multiplay++
+                    console.log(multiplay)
+                } else {
+                    multiplay = 1
+                }
             }
             else if (matrix[y][x] == 3) {
                 fill("yellow");
@@ -40,12 +51,12 @@ setInterval(
     function () {
         socket.on("send matrix", nkarel
         )
-    }, 1000)
+    }, 500)
 setInterval(
     function () {
         socket.on("send grass.length", tpel
         )
-    }, 1000)
-function tpel(grassArr) {
-    console.log(grassArr.length)
+    }, 500)
+function tpel(a) {
+    console.log(a)
 }

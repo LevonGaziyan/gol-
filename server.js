@@ -1,3 +1,4 @@
+fs = require('fs'); 
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
@@ -57,8 +58,15 @@ function createObject(matrix) {
             }
         }
     }
+    var a = grassArr.length
     io.sockets.emit("send matrix", matrix)
-    io.sockets.emit("send grass.length", grassArr)
+    io.sockets.emit("send grass.length", a)
+
+
+    
+    fs.writeFile('statistic.txt', "Grass- " + grassArr.length + "\nGrassEater- " + grassEaterArr.length + "\nGrassPredator- " + grassPredatorArr.length + "\nRock- " + rock.length + "\nBomb- " + bomb.length + "\nBust- " + bust.length + "\nAntiBust- " + antibust.length, function (err) {
+        if (err) return console.log(err);;
+    });
 
 }
 function game() {
@@ -73,11 +81,17 @@ function game() {
         grassPredatorArr[i].mul();
         grassPredatorArr[i].eat();
     }
+    var a = grassArr.length
     io.sockets.emit("send matrix", matrix)
-    io.sockets.emit("send grass.length", grassArr)
+    io.sockets.emit("send grass.length", a)
+
+    fs.writeFile('statistic.txt', "Grass- " + grassArr.length + "\nGrassEater- " + grassEaterArr.length + "\nGrassPredator- " + grassPredatorArr.length + "\nRock- " + rock.length + "\nBomb- " + bomb.length + "\nBust- " + bust.length + "\nAntiBust- " + antibust.length, function (err) {
+        if (err) return console.log(err);;
+    });
+
 }
 
-setInterval(game, 1000)
+setInterval(game, 500)
 io.on('connection', function (socket) {
     createObject(matrix)
 })
